@@ -5,7 +5,7 @@
  *  LICENSE file in the root directory of this source tree.
  */
 import type * as CM from 'codemirror';
-
+import CodeMirror from 'codemirror';
 import {
   GraphQLNonNull,
   GraphQLList,
@@ -25,8 +25,6 @@ export default function onHasCompletion(
   data: CM.EditorChangeLinkedList | undefined,
   onHintInformationRender: (el: HTMLDivElement) => void,
 ) {
-  const CodeMirror = require('codemirror');
-
   let information: HTMLDivElement | null;
   let deprecation: HTMLDivElement | null;
 
