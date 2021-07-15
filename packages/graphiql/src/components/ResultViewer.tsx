@@ -12,6 +12,18 @@ import commonKeys from '../utility/commonKeys';
 import { SizerComponent } from '../utility/CodeMirrorSizer';
 import { ImagePreview as ImagePreviewComponent } from './ImagePreview';
 
+import Comi from 'codemirror';
+const CodeMirror: any = Comi;
+import 'codemirror/addon/fold/foldgutter';
+import 'codemirror/addon/fold/brace-fold';
+import 'codemirror/addon/dialog/dialog';
+import 'codemirror/addon/search/search';
+import 'codemirror/addon/search/searchcursor';
+import 'codemirror/addon/search/jump-to-line';
+import 'codemirror/keymap/sublime';
+import 'codemirror-graphql/results/mode';
+import 'codemirror-graphql/utils/info-addon';
+
 type ResultViewerProps = {
   value?: string;
   editorTheme?: string;
@@ -36,22 +48,10 @@ export class ResultViewer extends React.Component<ResultViewerProps, {}>
   _node: HTMLElement | null = null;
 
   componentDidMount() {
-    // Lazily require to ensure requiring GraphiQL outside of a Browser context
-    // does not produce an error.
-    const CodeMirror = require('codemirror');
-    require('codemirror/addon/fold/foldgutter');
-    require('codemirror/addon/fold/brace-fold');
-    require('codemirror/addon/dialog/dialog');
-    require('codemirror/addon/search/search');
-    require('codemirror/addon/search/searchcursor');
-    require('codemirror/addon/search/jump-to-line');
-    require('codemirror/keymap/sublime');
-    require('codemirror-graphql/results/mode');
     const Tooltip = this.props.ResultsTooltip;
     const ImagePreview = this.props.ImagePreview;
 
     if (Tooltip || ImagePreview) {
-      require('codemirror-graphql/utils/info-addon');
       const tooltipDiv = document.createElement('div');
       CodeMirror.registerHelper(
         'info',
